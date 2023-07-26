@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="view_new_contact_tree" model="ir.ui.view">
+            <field name="name">new.contact.tree</field>
+            <field name="model">my_contact_module.contact</field>
+            <field name="arch" type="xml">
+                <tree string="Contacts" create="true">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="date_of_birth"/>
+                    <field name="mobile"/>
+                    <field name="nickname"/>
+                    <field name="email"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_new_contact_form" model="ir.ui.view">
+            <field name="name">new.contact.form</field>
+            <field name="model">my_contact_module.contact</field>
+            <field name="arch" type="xml">
+                <form string="Contact">
+                    <sheet>
+                        <notebook>
+                            <page string="General Information">
+                                <group>
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                    <field name="mobile"/>
+                                    <field name="date_of_birth"/>
+                                </group>
+                            </page>
+                            <page string="Additional Information">
+                                <group>
+                                    <field name="nickname"/>
+                                    <field name="email"/>
+                                    <field name="image"  string="Image" widget="image"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_new_contact_tree" model="ir.actions.act_window">
+            <field name="name">New Contacts</field>
+            <field name="res_model">my_contact_module.contact</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_new_contact_tree"/>
+            <field name="target">main</field>
+        </record>
+
+        <record id="action_new_contact_form" model="ir.actions.act_window">
+            <field name="name">New Contact</field>
+            <field name="res_model">my_contact_module.contact</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_new_contact_form"/>
+            <field name="target">current</field>
+        </record>
+
+
+        <menuitem id="menu_new_contact_tree" name="Contact List" action="action_new_contact_tree"/>
+    </data>
+</odoo>
